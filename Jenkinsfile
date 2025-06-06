@@ -21,10 +21,7 @@ pipeline{
 
         stage("Build"){
             steps{
-               dir("spotme-rest/"){
-                sh ''' mvn clean install -ntp -Dmaven.test.skip '''
-               }
-               dir("spotme-web/"){
+               dir("./"){
                 sh '''
                 npm install
                 npm install @ionic/cli
@@ -36,19 +33,15 @@ pipeline{
             }
         }
         stage("Test"){
-            steps{
-               dir("spotme-rest/"){
-                sh ''' echo "Fake Test" '''
-               }
-               dir("spotme-web/"){
+            steps
+               dir("./"){
                sh ''' echo "Fake Test" '''
               }
             }
         }
-        stage("Store Artifacts"){
+        stage("Archive Build"){
             steps{
-               archiveArtifacts artifacts: 'spotme-web/spotme-web-archive.tar.gz*', followSymlinks: false
-               archiveArtifacts artifacts: 'spotme-rest/target/*.jar', followSymlinks: false
+               archiveArtifacts artifacts: 'spotme-web-archive.tar.gz*', followSymlinks: false
             }
         }
 //        stage("Build Container Images"){
@@ -68,20 +61,18 @@ pipeline{
                         try{
                             docker.withRegistry(registryUrl,'spotme-containerregistry') {
                                 sh "docker system prune -a -f"
-                                def smrest = docker.build("spotme/spotme-rest:${s_branch}","./spotme-rest")
-                                //sh "docker push ${registry}spotme-rest:${s_branch}"
 
                                 def smweb = docker.build("spotme/spotme-web:${s_branch}","./spotme-web")
                                 //"docker push ${registry}spotme-web:${s_branch}"
 
                                 // or docker.build, etc.
-                                smrest.push()
                                 smweb.push()
+                                echo DOCKER_IMAGE_NAME='''+image_name+''' > pipeline.properties
+                                sh "echo DOCKER_IMAGE_NAME=${smweb.imageName()} >> imageRef.properties"
                             }
                         }catch(e){
                             echo 'Tunnel URL did not work for image push, trying to push via intranet'
                             docker.withRegistry(localRegistryUrl,'spotme-containerregistry') {
-                                def smrest_l = docker.build("spotme/spotme-rest:${s_branch}","./spotme-rest")
 
                                 def smweb_l = docker.build("spotme/spotme-web:${s_branch}","./spotme-web")
 
@@ -110,18 +101,10 @@ pipeline{
             }
             }
         }
-        stage('Revalidate K8s tokens') {
-            steps {
-                script {
-                    dir("spotme-rest/"){
-                        try{
-                            sh "kubectl rollout restart ds -n kube-system calico-node"
-                            println "Restarted calico-node"
-                        }catch (e){
-                            println "Could not restart calico-node"
-                        }
-                    }
-                }
+        stage("Store Pipeline Artifacts"){
+            steps{
+               archiveArtifacts artifacts: 'spotme-web-archive.tar.gz*', followSymlinks: false
+               archiveArtifacts artifacts: 'imageRef.properties', followSymlinks: false
             }
         }
 //        stage("Deploy") {
