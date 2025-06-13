@@ -14,6 +14,7 @@ import {
 import { IonReactRouter } from '@ionic/react-router';
 import { ellipse, square, triangle } from 'ionicons/icons';
 import Home from './pages/home/Home';
+import Home2 from './pages/home/Home2';
 import Friends from './pages/friends/Friends';
 import Login from './pages/login/Login';
 import SignUp from './pages/login/SignUp';
@@ -103,6 +104,9 @@ return (
           <Route exact path="/Home">
             <Home/>
           </Route>
+          <Route exact path="/Home2">
+            <Home2/>
+          </Route>
           <Route exact path="/Friends">
             <Friends />
           </Route>
@@ -120,7 +124,7 @@ return (
           </Route>
         </IonRouterOutlet>
         <IonTabBar slot="bottom">
-          <IonTabButton tab="home" href={user===null? "/Login":"/Home"}>
+          <IonTabButton tab="home" href={user===null? "/Login":"/Home2"}>
             <IonIcon aria-hidden="true" icon={triangle} />
             <IonLabel>Home</IonLabel>
           </IonTabButton>

@@ -1,0 +1,435 @@
+/* General Body/Page Styles */
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: #f4f7f6; /* Default light mode background */
+    color: #333; /* Default light mode text color */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Dark Mode styles applied to body when 'dark-mode' class is present */
+body.dark-mode {
+    background-color: #121212; /* Dark background */
+    color: #f5f5f5; /* Light text */
+}
+
+/* Page Container */
+.page-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+    /* Color and background are handled by the body class, or overrides below */
+}
+
+
+/* Header Styles */
+.header {
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee; /* Light mode border */
+    transition: border-color 0.3s ease;
+}
+
+.dark-mode .header {
+    border-bottom-color: #333; /* Dark mode border */
+}
+
+.title {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #2c3e50; /* Light mode title color */
+    margin: 0;
+    transition: color 0.3s ease;
+}
+
+.dark-mode .title {
+    color: #e0e0e0; /* Dark mode title color */
+}
+
+.toggle-button,
+.dark-mode-toggle-button {
+    padding: 8px 15px;
+    background-color: #007bff; /* Light mode button background */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+    font-weight: 500;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    flex-shrink: 0;
+    margin-left: 10px;
+}
+
+.toggle-button:hover,
+.dark-mode-toggle-button:hover {
+    background-color: #0056b3; /* Darker on hover */
+}
+
+.dark-mode .toggle-button,
+.dark-mode .dark-mode-toggle-button {
+    background-color: #4299e1; /* Dark mode button background */
+}
+
+.dark-mode .toggle-button:hover,
+.dark-mode .dark-mode-toggle-button:hover {
+    background-color: #3182ce; /* Darker on hover in dark mode */
+}
+
+
+/* Profile Card Styles */
+.profile-card {
+    background-color: #ffffff; /* Light mode card background */
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); /* Light mode shadow */
+    padding: 30px;
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    box-sizing: border-box;
+    margin-bottom: 30px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dark-mode .profile-card {
+    background-color: #1f1f1f; /* Dark mode card background */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Dark mode shadow */
+}
+
+.profile-picture {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+    border: 3px solid #007bff; /* Light mode border */
+    transition: border-color 0.3s ease;
+}
+
+.dark-mode .profile-picture {
+    border-color: #63b3ed; /* Dark mode border */
+}
+
+.username {
+    font-size: 1.8em;
+    font-weight: 700;
+    color: #2c3e50; /* Light mode text color */
+    margin-bottom: 10px;
+    transition: color 0.3s ease;
+}
+
+.dark-mode .username {
+    color: #f0f0f0; /* Dark mode text color */
+}
+
+.bio {
+    font-size: 1em;
+    color: #555; /* Light mode text color */
+    line-height: 1.5;
+    margin-bottom: 20px;
+    max-width: 80%;
+    transition: color 0.3s ease;
+}
+
+.dark-mode .bio {
+    color: #b0b0b0; /* Dark mode text color */
+}
+
+.stats-container {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    margin-bottom: 20px;
+    border-top: 1px solid #eee; /* Light mode border */
+    border-bottom: 1px solid #eee; /* Light mode border */
+    padding: 15px 0;
+    transition: border-color 0.3s ease;
+}
+
+.dark-mode .stats-container {
+    border-top-color: #333; /* Dark mode border */
+    border-bottom-color: #333; /* Dark mode border */
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.stat-number {
+    font-size: 1.4em;
+    font-weight: bold;
+    color: #007bff; /* Light mode color */
+    transition: color 0.3s ease;
+}
+
+.dark-mode .stat-number {
+    color: #63b3ed; /* Dark mode color */
+}
+
+.stat-label {
+    font-size: 0.9em;
+    color: #777; /* Light mode text color */
+    margin-top: 5px;
+    transition: color 0.3s ease;
+}
+
+.dark-mode .stat-label {
+    color: #909090; /* Dark mode text color */
+}
+
+.private-stats {
+    width: 100%;
+    text-align: left;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #eee; /* Light mode border */
+    transition: border-color 0.3s ease;
+}
+
+.dark-mode .private-stats {
+    border-top-color: #333; /* Dark mode border */
+}
+
+.private-stats-title {
+    font-size: 1.3em;
+    font-weight: bold;
+    color: #2c3e50; /* Light mode text color */
+    margin-bottom: 15px;
+    transition: color 0.3s ease;
+}
+
+.dark-mode .private-stats-title {
+    color: #e0e0e0; /* Dark mode text color */
+}
+
+.detail-text {
+    font-size: 1em;
+    color: #444; /* Light mode text color */
+    margin-bottom: 8px;
+    transition: color 0.3s ease;
+}
+
+.dark-mode .detail-text {
+    color: #ccc; /* Dark mode text color */
+}
+
+/* Loading/Error/No Data Messages */
+.loading-indicator,
+.error-message,
+.no-data-message {
+    font-size: 1.2em;
+    text-align: center;
+    padding: 50px;
+}
+.loading-indicator {
+    color: #007bff; /* default for loading */
+}
+
+.error-message {
+    color: #dc3545;
+}
+
+.no-data-message {
+    color: #777;
+}
+
+/* Feed Section Styles */
+.feed-section {
+    width: 100%;
+    max-width: 500px;
+    background-color: #ffffff; /* Light mode background */
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); /* Light mode shadow */
+    padding: 20px;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dark-mode .feed-section {
+    background-color: #1f1f1f; /* Dark mode background */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Dark mode shadow */
+}
+
+.feed-section-title {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #2c3e50; /* Light mode text color */
+    margin-bottom: 20px;
+    text-align: center;
+    border-bottom: 1px solid #eee; /* Light mode border */
+    padding-bottom: 15px;
+    transition: color 0.3s ease, border-bottom-color 0.3s ease;
+}
+
+.dark-mode .feed-section-title {
+    color: #e0e0e0; /* Dark mode text color */
+    border-bottom-color: #333; /* Dark mode border */
+}
+
+.feed-posts-container {
+    max-height: 600px;
+    overflow-y: auto;
+    padding-right: 10px;
+    box-sizing: border-box;
+}
+
+/* Custom Scrollbar Styles (can't be inline, typically in global CSS or <style> tag) */
+/* These styles will only work if the CSS is loaded in a way that allows them (e.g., as a .css file) */
+.feed-posts-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.feed-posts-container::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Light mode track */
+    border-radius: 10px;
+}
+
+.dark-mode .feed-posts-container::-webkit-scrollbar-track {
+    background: #2a2a2a; /* Dark mode track */
+}
+
+.feed-posts-container::-webkit-scrollbar-thumb {
+    background: #888; /* Light mode thumb */
+    border-radius: 10px;
+}
+
+.dark-mode .feed-posts-container::-webkit-scrollbar-thumb {
+    background: #555; /* Dark mode thumb */
+}
+
+.feed-posts-container::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Light mode hover */
+}
+
+.dark-mode .feed-posts-container::-webkit-scrollbar-thumb:hover {
+    background: #777; /* Dark mode hover */
+}
+
+
+/* Feed Post Card Styles */
+.feed-post-card {
+    background-color: #ffffff; /* Light mode background */
+    border: 1px solid #e9ecef; /* Light mode border */
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); /* Light mode shadow */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dark-mode .feed-post-card {
+    background-color: #2a2a2a; /* Dark mode background */
+    border-color: #333; /* Dark mode border */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* Dark mode shadow */
+}
+
+.feed-post-image {
+    width: 100%;
+    height: auto;
+    max-height: 200px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.feed-card-content {
+    width: 100%;
+}
+
+.feed-post-title {
+    font-size: 1.2em;
+    color: #34495e; /* Light mode text color */
+    margin-top: 0;
+    margin-bottom: 8px;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.dark-mode .feed-post-title {
+    color: #f0f0f0; /* Dark mode text color */
+}
+
+.feed-post-detail {
+    font-size: 0.9em;
+    color: #555; /* Light mode text color */
+    line-height: 1.4;
+    margin-bottom: 4px;
+    transition: color 0.3s ease;
+}
+
+.dark-mode .feed-post-detail {
+    color: #b0b0b0; /* Dark mode text color */
+}
+
+.feed-post-value {
+    font-weight: bold;
+    color: #333; /* Light mode text color */
+    transition: color 0.3s ease;
+}
+
+.dark-mode .feed-post-value {
+    color: #f5f5f5; /* Dark mode text color */
+}
+
+.feed-post-date {
+    font-size: 0.8em;
+    color: #8e8e8e; /* Light mode text color */
+    margin-top: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: color 0.3s ease;
+}
+
+.dark-mode .feed-post-date {
+    color: #909090; /* Dark mode text color */
+}
+
+/* Feed Loading/No More/No Posts Messages */
+.feed-loading-indicator,
+.feed-no-more-posts,
+.feed-no-posts-available {
+    text-align: center;
+    padding: 20px;
+    font-size: 1em;
+    font-style: italic;
+}
+
+.feed-loading-indicator {
+    color: #007bff; /* Light mode color */
+    font-weight: bold;
+}
+
+.dark-mode .feed-loading-indicator {
+    color: #63b3ed; /* Dark mode color */
+}
+
+.feed-no-more-posts {
+    color: #888; /* Light mode color */
+}
+
+.dark-mode .feed-no-more-posts {
+    color: #a0a0a0; /* Dark mode color */
+}
+
+.feed-no-posts-available {
+    color: #dc3545;
+}

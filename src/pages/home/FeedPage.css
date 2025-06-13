@@ -1,0 +1,108 @@
+/* Global Ionic adjustments */
+ion-content {
+    --background: #fafafa; /* Light background for the content area */
+}
+
+ion-toolbar {
+    --background: #ffffff; /* White toolbar background */
+    --color: #262626; /* Dark text for toolbar title */
+    border-bottom: 1px solid #dbdbdb; /* Subtle separator */
+}
+
+ion-title {
+    font-weight: 600;
+    font-size: 1.2em;
+    padding: 0 16px; /* Adjust padding for title */
+}
+
+/* Main feed container to center content */
+.feed-container {
+    max-width: 600px; /* Instagram-like max width */
+    margin: 0 auto; /* Center the feed */
+    padding: 20px 0; /* Vertical padding */
+}
+
+/* Individual workout card styling */
+ion-card.workout-card {
+    margin: 0 auto 20px auto; /* Center cards and add bottom margin */
+    width: 100%; /* Take full width of its container */
+    max-width: 600px; /* Ensure cards don't get too wide on large screens */
+    border-radius: 3px; /* Subtle rounded corners */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.05); /* Subtle shadow */
+    background-color: #ffffff;
+    overflow: hidden; /* Ensure image corners are clipped */
+    --background: #ffffff; /* Explicit background for card */
+}
+
+/* Image within the card */
+ion-img {
+    display: block;
+    width: 100%;
+    height: auto; /* Maintain aspect ratio */
+    object-fit: cover; /* Cover the area without distorting aspect ratio */
+    background-color: #eee; /* Placeholder background */
+}
+
+/* Card header and content styling */
+ion-card-header {
+    padding-bottom: 0; /* Adjust padding */
+}
+
+ion-card-title.activity-type-title {
+    font-size: 1.1em;
+    color: #262626;
+    font-weight: bold;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+ion-card-content {
+    padding-top: 5px; /* Adjust padding */
+}
+
+.activity-detail {
+    font-size: 0.9em;
+    color: #555;
+    line-height: 1.5;
+    display: block; /* Ensure each detail is on a new line */
+    margin-bottom: 5px;
+}
+
+.activity-value {
+    font-weight: 600;
+    color: #333;
+}
+
+.activity-date {
+    font-size: 0.8em;
+    color: #8e8e8e;
+    margin-top: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: block; /* Ensure date is on its own line */
+}
+
+/* Loading and end messages */
+.loading-indicator,
+.no-more-posts,
+.no-posts-available {
+    text-align: center;
+    padding: 20px;
+    font-size: 1.1em;
+    color: #777;
+    font-style: italic;
+    width: 100%; /* Ensure they span the width */
+}
+
+.loading-indicator {
+    color: #007bff;
+    font-weight: bold;
+}
+
+.no-more-posts {
+    color: #888;
+}
+
+.no-posts-available {
+    color: #dc3545;
+}
