@@ -33,10 +33,11 @@ pipeline{
             }
         }
         stage("Test"){
-            steps
+            steps{
                dir("./"){
                sh ''' echo "Fake Test" '''
               }
+            }
         }
         stage("Archive Build"){
             steps{
