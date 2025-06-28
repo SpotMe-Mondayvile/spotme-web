@@ -37,23 +37,22 @@ pipeline{
                dir("./"){
                sh ''' echo "Fake Test" '''
               }
-            }
         }
         stage("Archive Build"){
             steps{
                archiveArtifacts artifacts: 'spotme-web-archive.tar.gz*', followSymlinks: false
             }
         }
-//        stage("Build Container Images"){
-//            steps(){
-//                dir("spotme-rest/"){
-//                sh """ docker build -t ${registry}spotme-rest:${s_branch} . """
-//                }
-//                dir("spotme-web/"){
-//                sh """ docker build -t ${registry}spotme-web:${s_branch} . """
-//                }
-//            }
-//        }
+    //    stage("Build Container Images"){
+    //        steps(){
+    //            dir("spotme-rest/"){
+    //            sh """ docker build -t ${registry}spotme-rest:${s_branch} . """
+    //            }
+    //            dir("spotme-web/"){
+    //            sh """ docker build -t ${registry}spotme-web:${s_branch} . """
+    //            }
+    //        }
+    //    }
         stage("Image Upload"){
             steps(){
                 script{
@@ -107,6 +106,74 @@ pipeline{
                archiveArtifacts artifacts: 'imageRef.properties', followSymlinks: false
             }
         }
+//        stage("Deploy") {
+//            steps {
+//                script{
+//                    if(env.BRANCH_NAME=="develop"){
+//                        dir("kube/") {
+//                            script {
+//                                try {
+//                                    sh """kubectl delete -k overlays/dev/ --force"""
+//                                } catch (e) {
+//                                    println e
+//                                    sh '''echo "Was not able delete old resources"'''
+//                                }
+//                                try {
+//                                    sh """kubectl apply -k overlays/dev/"""
+//                                    sh """kubectl rollout restart -k  overlays/dev/"""
+//                                } catch (e) {
+//                                    println e
+//                                    sh '''echo "Was not able to start web service, might be running already"'''
+//                                }
+//                            }
+//                        }
+//
+//                    }else if(env.BRANCH_NAME=="master"){
+//                        dir("kube/") {
+//                            script {
+//                                try {
+//                                    sh """kubectl delete -k overlays/test/ --force"""
+//                                } catch (e) {
+//                                    println e
+//                                    sh '''echo "Was not able delete old resources"'''
+//                                }
+//                                try {
+//                                    sh """kubectl apply -k overlays/test/"""
+//                                    sh """kubectl rollout restart -k  overlays/test/"""
+//                                } catch (e) {
+//                                    println e
+//                                    sh '''echo "Was not able to start web service, might be running already"'''
+//                                }
+//                            }
+//                        }
+//
+//                    }else if(env.BRANCH_NAME=="release"){
+//                        dir("kube/") {
+//                            script {
+//                                try {
+//                                    sh """kubectl delete -k overlays/prod/ --force"""
+//                                } catch (e) {
+//                                    println e
+//                                    sh '''echo "Was not able delete old resources"'''
+//                                }
+//                                try {
+//                                    input message: 'Deploy to Production?', ok: 'Deploy', parameters: [string(defaultValue: 'hotfix', description: 'This is necessary to make sure we are intentional when deploying to production', name: 'Release Number')]
+//                                    sh """kubectl apply -k overlays/prod/"""
+//                                } catch (e) {
+//                                    println e
+//                                    sh '''echo "Was not able to start web service, might be running already"'''
+//                                }
+//                            }
+//                        }
+//                    }
+//            }
+//
+//            }
+//
+//        }
+
+
+
 
     }
     post {
@@ -114,6 +181,7 @@ pipeline{
                 cleanWs()
            }
     }
+}
 
 // node {
 //     // some block
