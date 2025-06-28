@@ -78,8 +78,8 @@ pipeline{
 
                                 // or docker.build, etc.
                                 smweb_l.push()
-                                sh "echo DOCKER_IMAGE_NAME=${smweb_1.imageName()} >> pipeline.properties"
-                                sh "echo DOCKER_IMAGE_NAME=${smweb_1.imageName()} >> imageRef.properties"
+                                sh "echo DOCKER_IMAGE_NAME=${smweb_l.imageName()} >> pipeline.properties"
+                                sh "echo DOCKER_IMAGE_NAME=${smweb_l.imageName()} >> imageRef.properties"
                             }
                         }
                     }
