@@ -53,3 +53,90 @@
 color: aliceblue;
 background-color: aliceblue;
 }
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    /* background-color: #f0f0f0; */
+}
+
+.card {
+    width: 90%;
+    max-width: 350px;
+    padding: 20px;
+    backgroundColor: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.description {
+    font-size: 16px;
+    color: #666;
+    textAlign: center;
+    margin-bottom: 20px;
+}
+
+.form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.formItem {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.label {
+    fontSize: 16px;
+    fontWeight: bold;
+    margin-bottom: 5px;
+}
+
+.input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    borderRadius: 5px;
+    fontSize: 16px;
+}
+
+.errorText {
+    color: red;
+    fontSize: 14px;
+    margin-top: 10px;
+}
+
+.button {
+    width: 100%;
+    padding: 10px;
+    backgroundColor: blue;
+    color: white;
+    borderRadius: 5px;
+    fontSize: 18px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.signUpText {
+    color: #666;
+    fontSize: 16px;
+    textAlign: center;
+}
+
+.signUpLink {
+    color: blue;
+    text-decoration: underline;
+}

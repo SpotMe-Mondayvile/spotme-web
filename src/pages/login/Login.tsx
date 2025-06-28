@@ -64,6 +64,8 @@ const Login=()=>{
       </IonHeader>
       <IonContent>
       <section className="align_center form_page">
+        <div className="container">
+
         <div>
             <form action="" className="authentication_form" onSubmit={handleSubmit((formData)=>{onSubmit(formData)})}>
                       <h2>Login </h2>
@@ -97,6 +99,7 @@ const Login=()=>{
                                                 </div>
                       </div>
                     </form>
+        </div>
         </div>
       </section>
       </IonContent>
