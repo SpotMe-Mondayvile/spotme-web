@@ -106,6 +106,7 @@ pipeline{
             steps{
                archiveArtifacts artifacts: 'spotme-web-archive.tar.gz*', followSymlinks: false
                archiveArtifacts artifacts: 'imageRef.properties', followSymlinks: false
+               archiveArtifacts artifacts: 'pipeline.properties', followSymlinks: false
             }
         }
 //        stage("Deploy") {
