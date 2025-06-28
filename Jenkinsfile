@@ -67,7 +67,7 @@ pipeline{
 
                                 // or docker.build, etc.
                                 smweb.push()
-                                echo DOCKER_IMAGE_NAME='''+image_name+''' > pipeline.properties
+                                // echo DOCKER_IMAGE_NAME='''+image_name+''' > pipeline.properties
                                 sh "echo DOCKER_IMAGE_NAME=${smweb.imageName()} >> imageRef.properties"
                             }
                         }catch(e){
@@ -78,8 +78,8 @@ pipeline{
 
                                 // or docker.build, etc.
                                 smweb_l.push()
-                                echo DOCKER_IMAGE_NAME='''+image_name+''' > pipeline.properties
-                                sh "echo DOCKER_IMAGE_NAME=${smweb_1.imageName()} >> imageRef.properties"
+                                sh "echo DOCKER_IMAGE_NAME=${smweb_1.imageName()} > pipeline.properties"
+                                sh "echo DOCKER_IMAGE_NAME=${smweb_1.imageName()} > imageRef.properties"
                             }
                         }
                     }
