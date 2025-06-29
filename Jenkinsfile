@@ -3,6 +3,7 @@ def registry = "containerregistry.spot-me-app.com/spotme/" as String
 def localRegistry = "http://192.168.1.227:8082/" as String
 def localRegistryUrl = "http://192.168.1.227:8082" as String
 def registryUrl = "https://containerregistry.spot-me-app.com" as String
+def appName = "${appName}" as String
 s_branch = s_branch.replaceAll("/","_")
 
 pipeline{
@@ -27,7 +28,7 @@ pipeline{
                 npm install @ionic/cli
                 npm install axios
                 ionic build
-                tar -czvf spotme-web-archive.tar.gz dist
+                tar -czvf ${appName}-archive.tar.gz dist
                 '''
                }
             }
@@ -41,7 +42,7 @@ pipeline{
         }
         stage("Archive Build"){
             steps{
-               archiveArtifacts artifacts: 'spotme-web-archive.tar.gz*', followSymlinks: false
+               archiveArtifacts artifacts: "${appName}-archive.tar.gz*", followSymlinks: false
             }
         }
     //    stage("Build Container Images"){
@@ -49,8 +50,8 @@ pipeline{
     //            dir("spotme-rest/"){
     //            sh """ docker build -t ${registry}spotme-rest:${s_branch} . """
     //            }
-    //            dir("spotme-web/"){
-    //            sh """ docker build -t ${registry}spotme-web:${s_branch} . """
+    //            dir("${appName}/"){
+    //            sh """ docker build -t ${registry}${appName}:${s_branch} . """
     //            }
     //        }
     //    }
@@ -62,8 +63,8 @@ pipeline{
                             docker.withRegistry(registryUrl,'spotme-containerregistry') {
                                 sh "docker system prune -a -f"
 
-                                def smweb = docker.build("spotme/spotme-web:${s_branch}","./")
-                                //"docker push ${registry}spotme-web:${s_branch}"
+                                def smweb = docker.build("spotme/${appName}:${s_branch}","./")
+                                //"docker push ${registry}${appName}:${s_branch}"
 
                                 // or docker.build, etc.
                                 sh "echo IMAGE_NAME=${smweb.imageName()} >> pipeline.properties"
@@ -76,7 +77,7 @@ pipeline{
                             echo 'Tunnel URL did not work for image push, trying to push via intranet'
                             docker.withRegistry(localRegistryUrl,'spotme-containerregistry') {
 
-                                def smweb_l = docker.build("spotme/spotme-web:${s_branch}","./")
+                                def smweb_l = docker.build("spotme/${appName}:${s_branch}","./")
 
                                 // or docker.build, etc.
                                 smweb_l.push()
@@ -106,7 +107,7 @@ pipeline{
         }
         stage("Store Pipeline Artifacts"){
             steps{
-               archiveArtifacts artifacts: 'spotme-web-archive.tar.gz*', followSymlinks: false
+               archiveArtifacts artifacts: "${appName}-archive.tar.gz*", followSymlinks: false
                archiveArtifacts artifacts: 'imageRef.properties', followSymlinks: false
                archiveArtifacts artifacts: 'pipeline.properties', followSymlinks: false
             }
@@ -193,11 +194,11 @@ pipeline{
 //     git branch: env.BRANCH_NAME, url: 'git@github.com:SpotMe-Mondayvile/spotme.git'
 //
 // sh '''
-// cd spotme-web
+// cd ${appName}
 // npm install
 // npm install -g serve
 // npm run build
-// tar -czvf spotme-web-archive.tar.gz build
+// tar -czvf ${appName}-archive.tar.gz build
 // serve -s build
 // cd ..'''
 //
@@ -209,7 +210,7 @@ pipeline{
 // def projectVersion = sh script: "cd spotme-rest && mvn -q -Dexec.executable=echo -Dexec.args='\${project.version}' --non-recursive exec:exec", returnStdout: true
 //
 // sh'''cd ..'''
-// archiveArtifacts artifacts: 'spotme-web/spotme-web-archive.tar.gz*', followSymlinks: false
+// archiveArtifacts artifacts: '${appName}/${appName}-archive.tar.gz*', followSymlinks: false
 // archiveArtifacts artifacts: 'spotme-rest/target/*.jar', followSymlinks: false
 //
 // // sh '''docker image ls'''
