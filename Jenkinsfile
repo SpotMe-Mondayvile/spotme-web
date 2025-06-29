@@ -66,10 +66,11 @@ pipeline{
                                 //"docker push ${registry}spotme-web:${s_branch}"
 
                                 // or docker.build, etc.
-                                //smweb.push()
-                                // echo DOCKER_IMAGE_NAME='''+image_name+''' > pipeline.properties
                                 sh "echo IMAGE_NAME=${smweb.imageName()} >> pipeline.properties"
                                 sh "echo IMAGE_NAME=${smweb.imageName()} >> imageRef.properties"
+                                smweb.push()
+                                // echo DOCKER_IMAGE_NAME='''+image_name+''' > pipeline.properties
+                                
                             }
                         }catch(e){
                             echo 'Tunnel URL did not work for image push, trying to push via intranet'
